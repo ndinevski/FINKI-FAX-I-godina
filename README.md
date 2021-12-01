@@ -1,4 +1,4 @@
-![alt text](https://imgur.com/a/hN5Uyjr)
+![alt text](https://i.imgur.com/pDpxOPb.png)
 # FINKI-FAX
 Лабораториски решени задачи на ФИНКИ.
 
