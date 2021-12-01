@@ -1,38 +1,32 @@
+/*
+Да се напише програма која што проверува дали една квадратна равенка има реални решенија 
+и истите ги пресметува.
+Една квадратна равенка од облик aх2+ bх + c = 0 има две различни реални решенија доколку
+вредноста на изразот b2 - 4ас е поголема од 0. Доколку вредноста на изразот е 0, равенката 
+има едно двојно реално решение, а доколку изразот е помал од 0 равенката нема реални решенија.
+Влезот на програмата се коефициентите a,b иc на равенката.
+Доколку равенката има две различни решенија потребно е на излезот да се испише: "Reshenija na 
+ravenkata se: " и да се наведат решенијата одвоени со сврзникот "i" .
+Доколку равенката има едно решение потребно е да се испечати: "Dvojno reshenie na ravenkata e: " 
+и да се наведе решението.
+Доколку равенката нема решение потребно е да се испечати: "Ravenkata nema realni reshenija".
+*/
 #include <stdio.h>
 #include <math.h>
 
 int main(){
-    int broj, pocetenbroj, cifra, cifra2, kolega=0, cnt=0;
-    float procent;
-    scanf("%d", &broj);
-    pocetenbroj=broj;
-    for(int i=0;i<3;i+=2){
-        cifra=broj%10;
-        cifra2=(broj/10)%10;
-        if(cifra==5 || cifra2==5){
-            if(cifra2==5 && cifra==5){
-                kolega+=(6*pow(10,i)+6*pow(10,i+1));
-                cnt+=2;
-            }else if(cifra2==5){
-                kolega+=(cifra*pow(10,i) + 6*pow(10,i+1));
-                cnt++;
-            }else if(cifra==5){
-                kolega+=(6*pow(10,i) + cifra2*pow(10,i+1));
-                cnt++;
-            }
+    float a,b,c,x1,x2;
+    scanf("%f %f %f", &a, &b, &c);
+    x1=(-b+sqrt(pow(b,2)-4*a*c))/(2*a);
+    x2=(-b-sqrt(pow(b,2)-4*a*c))/(2*a);
+    if(x1 != x2){
+        if(pow(b,2)-4*a*c > 0){
+            printf("Reshenija na ravenkata se: %.2f i %.2f", x2, x1);
         }else{
-            kolega+=(cifra*pow(10,i) + cifra2*pow(10,i+1));
+            printf("Ravenkata nema realni reshenija");
         }
-        broj/=100;
-    }
-    if(cnt < 2){
-        printf("Error");
-    }else if(kolega > pocetenbroj){
-        procent = ((kolega - pocetenbroj)/(float)pocetenbroj)*100;
-        printf("%.4f%%", procent);
-    }else if(pocetenbroj > kolega){
-        procent = 100*((kolega - pocetenbroj)/(float)pocetenbroj);
-        printf("%.4f%%", procent);
+    }else if(x1 == x2){
+        printf("Dvojno reshenie na ravenkata e: %.2f", x1);
     }
     return 0;
 }
