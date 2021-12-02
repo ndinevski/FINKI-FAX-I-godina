@@ -8,25 +8,22 @@
 #include <stdio.h>
 
 int main(){
-    int i,tmp,A,P,cnt=0;
+    int i,tmp,A,P,cnt=0,sumDigits=0;
     scanf("%d %d", &A, &P);
-    for(i=A;i>=1;i--){
+    for(i=1;i<=A;i++){
         tmp=i;
-        int sumDigits=0;
         while(tmp>0){
             sumDigits+=tmp%10;
             tmp/=10;
         }
-        if(((i/100.0)*P)==sumDigits){
-            printf("%d\n",i);
-            cnt++;
+        printf("%d", sumDigits);
+        if((i/100.0)*P==sumDigits){
+            printf("%d",i);
+            cnt+=1;
         }
         if(cnt==5){
             break;
-        }   
-    }
-    if(cnt==0){
-        printf("NEMA");
+        }
     }
     return 0;
 }
