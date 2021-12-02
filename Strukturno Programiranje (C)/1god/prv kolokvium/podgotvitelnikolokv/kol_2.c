@@ -13,6 +13,7 @@ int main(){
         printf("Brojot ne e validen");
         return 0;
     }
+    n-=1;
     while(n>0){
         int tmp=n,nov=0,cnt=0;
         while(tmp>0){
