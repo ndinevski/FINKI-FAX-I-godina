@@ -39,10 +39,8 @@ int main(){
             printf("Total tax return is: %.2f\n", sum*0.15);
             if(sum*0.15>maxart){
                 maxart=sum*0.15;
-            }
-            if(total>max){
                 max=total;
-            }   
+            }  
         }
         m--;  
     }
