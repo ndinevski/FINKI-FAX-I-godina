@@ -7,8 +7,16 @@
 
 int main(){
     char c;
-    while(scanf("%c",&c)!='!'){
-
-    }
+    int sum=0,broj=0;
+    do{
+        scanf("%c", &c);
+        if(c>='0'&& c<='9'){
+            broj=broj*10+(c-'0');
+        }else{
+            sum+=broj;
+            broj=0;
+        }
+    }while(c!='!');
+    printf("%d", sum);
     return 0;
 }
