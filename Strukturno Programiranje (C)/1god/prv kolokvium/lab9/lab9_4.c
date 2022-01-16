@@ -21,7 +21,7 @@ void revertString(char *a, char *b, char *comparator){
     }else if(strcmp(comparator,"pogolem")==0){
         cmp=-1;
     }else{
-        printf("Invalid input \n");
+        printf("Invalid comparator \n");
         return;
     }
     for(int i=0;i<lena/2;i++){
@@ -35,7 +35,7 @@ void revertString(char *a, char *b, char *comparator){
         b[lenb-i-1]=tmp[i];
     }
 
-    if(strcmp(a,b)==0){
+    if(strcmp(a,b)>0){
         if(cmp==-1){
             puts(a);
         }else{
