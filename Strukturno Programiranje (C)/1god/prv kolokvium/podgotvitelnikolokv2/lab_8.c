@@ -55,6 +55,7 @@ int main() {
                 int j;
                 for(i=indeks1-1, j=0;i<indeks2+1;i++,j++){
                     najdolgred[j]=niza[i];
+                    najdolgred[indeks2+1]='\0';
                 }
                 break;
             }
