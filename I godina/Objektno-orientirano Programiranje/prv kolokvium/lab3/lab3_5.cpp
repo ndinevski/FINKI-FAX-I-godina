@@ -59,6 +59,14 @@ public:
             rabotnik[j].pecati();
         }
     }
+    void pecatiSoPlata(int m){
+        cout<<"Vraboteni so plata povisoka od "<<m<<" :"<<endl;
+        for(int j=0;j<brojVraboteni;j++){
+            if(rabotnik[j].getPlata()>=m){
+                rabotnik[j].pecati();
+            }
+        }
+    }
 };
 
 
@@ -66,15 +74,16 @@ int main(){
     int n;
     cin>>n;
     Rabotnik r[100];
-    Fabrika f(r,n);
     for(int i=0;i<n;i++){
         char ime[30],prezime[30];
         int plata;
         cin>>ime>>prezime>>plata;
-        r[i]= Rabotnik(ime, prezime, plata);
+        r[i]=Rabotnik(ime, prezime, plata);
     }
+    Fabrika f(r,n);
     int maksPlata;
     cin>>maksPlata;
     f.pecatiVraboteni();
+    f.pecatiSoPlata(maksPlata);
     return 0;
 }
