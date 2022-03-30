@@ -24,7 +24,7 @@ class OperativenSistem {
         this->size=os.size;
     }
 public:
-    OperativenSistem(char * name="", float version=0,Tip t=LINUX, float size=0){
+    OperativenSistem(char * name=nullptr, float version=0,Tip t=LINUX, float size=0){
         this->name=new char[strlen(name)+ 1];
         strcpy(this->name, name);
         this->version=version;
@@ -77,7 +77,7 @@ class Repozitorium{
         }
     }
 public:
-    Repozitorium(char * name=""){
+    Repozitorium(char * name=nullptr){
         this->n=0;
         strcpy(this->name, name);
         this->oss=nullptr;
