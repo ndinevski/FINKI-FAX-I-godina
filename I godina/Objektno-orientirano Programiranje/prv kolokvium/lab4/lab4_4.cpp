@@ -71,7 +71,7 @@ public:
     DVD(const DVD & d){
         copys(d);
     }
-    DVD operator = (const DVD & d){
+    DVD &operator = (const DVD & d){
         if(&d!=this){
             delete [] filmovi;
             copys(d);
