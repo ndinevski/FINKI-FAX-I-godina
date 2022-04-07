@@ -12,17 +12,13 @@ class List{
     void cpy(const List & other){
         this->n=other.n;
         this->broevi= new int[other.n];
-        for(int i=0;i<other.n;i++){
-            this->broevi[i]=other.broevi[i];
-        }
+        copy(other.broevi, other.broevi + other.n, this->broevi);
     }
 public:
     List(int * broevi=nullptr, int n=0){
         this->n=n;
         this->broevi= new int[n];
-        for(int i=0;i<n;i++){
-            this->broevi[i]=broevi[i];
-        }
+        copy(broevi, broevi + n, this->broevi);
     }
     List(const List & other){
         cpy(other);
