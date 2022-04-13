@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Form</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form action="https://github.com/login.php" method="post">
+        <fieldset id="details">
+            <legend>Your Details:</legend>
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Your name here"></input>
+            <p></p>
+            <label>Email:</label>
+            <input type="text" name="email" placeholder="mail@gmail.com"></input>
+        </fieldset>
+        <fieldset id="review">
+            <Legend>Your Review:</legend>
+            <label for="heard">How did you hear about us?</label>
+            <select name="heard">
+                <option value="g">Google</option>
+                <option value="f">Friend</option>
+                <option value="a">Ads</option>
+                <option value="o">Other</option>
+            </select>
+            <p></p>
+            <label for="visitagain">Would you visit again?</label><br>
+            <input id="yes" type="radio" name="visitagain" value="y" checked><label for="yes">Yes</label>
+            <input id="no" type="radio" name="visitagain" value="n"><label for="no">No</label>
+            <input id="maybe" type="radio" name="visitagain" value="m"><label for="maybe">Maybe</label>
+            <p></p>
+            <label>Comments:</label><br><textarea name="comments" cols="30" rows="4" placeholder="Your comments here."></textarea>
+            <p></p>
+            <input type="checkbox" name="updates" checked><label for="updates">Sign me up for email updates</label>
+            <p></p>
+            <input type="submit" name="submit" value="Submit review">
+        </fieldset>
+    </form>
+</body>
+
+</html>
