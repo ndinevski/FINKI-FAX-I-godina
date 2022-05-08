@@ -1,3 +1,7 @@
-body {
-    background-color: #f00;
+span {
+    background-color: white;
+}
+
+span+span {
+    background-color: blue;
 }

@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 600px;
+    width: 800px;
+}
+
+#list {
+    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#top {
+    height: 40px;
+}
+
+.navmenu {
+    background-color: #81b518;
+    color: white;
+    height: 30px;
+    padding: 4px;
+}
+
+.list {
+    margin-left: 120px;
+    font-size: 18px;
+}
+
+.els {
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+#content {
+    margin-top: 70px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 420px;
+    float: left;
+    width: 50%;
+}
+
+#slika1 {
+    width: 50%;
+    margin-top: 100px;
+}
+
+h1 {
+    color: #92CD00;
+    font-size: 26px;
+    text-align: center;
+}
+
+.textcontent .naslovi {
+    color: #192402;
+    font-weight: bold;
+    text-align: justify;
+}
+
+.textcontent .text {
+    text-align: justify;
+    color: #192402;
+    padding-left: 20px;
+    display: block;
+}
+
+#bottomsite {
+    background-color: #81b518;
+    color: white;
+    height: 30px;
+    padding: 4px;
+    margin-top: 120px;
+}
+
+.footertext {
+    margin: 0 auto;
+    margin-left: -40px;
+}
