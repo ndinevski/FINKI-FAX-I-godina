@@ -1,0 +1,201 @@
+/* * {
+    border: 0;
+    padding: 0;
+} */
+
+.nav__menu {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    column-gap: 30rem;
+    justify-content: space-between;
+}
+
+.nav__list {
+    display: flex;
+    column-gap: 5rem;
+    margin-right: 5rem;
+}
+
+.nav__logo {
+    margin-left: 5rem;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+ul {
+    list-style: none;
+}
+
+.header {
+    border-bottom: 3px solid black;
+}
+
+.komp {
+    background-color: darkblue;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 15rem;
+    margin-top: 1rem;
+    align-self: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.slika {
+    width: 55rem;
+}
+
+.lorem {
+    color: white;
+    vertical-align: middle;
+    font-size: 2.7rem;
+    text-align: left;
+    margin-left: 3rem;
+}
+
+.slika1 {
+    border-radius: 1rem;
+    padding: 0 0 0 0;
+    width: 20rem;
+    margin: 1rem 1rem 2rem 5rem;
+}
+
+.slika2 {
+    border-radius: 1rem;
+    padding: 0 0 0 0;
+    width: 20rem;
+    margin: 0 5rem 2rem 1rem;
+}
+
+.lorems1 {
+    margin-right: 5rem;
+    text-align: justify;
+}
+
+.lorems2 {
+    margin-left: 5rem;
+    text-align: justify;
+}
+
+.gorno {
+    display: flex;
+    align-items: center;
+}
+
+.dolno {
+    display: flex;
+}
+
+.content {
+    background-color: lightgreen;
+}
+
+.footer {
+    margin-top: 1rem;
+    border-top: 3px solid black;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 40rem;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    column-gap: 90rem;
+    color: white;
+    background-color: lightgreen;
+    margin: 1rem 0;
+}
+
+.levo {
+    margin-left: 2rem;
+}
+
+.desno {
+    margin-right: 2rem;
+}
+
+#naslov {
+    color: white;
+    text-align: center;
+}
+
+.contents {
+    background-color: lightgray;
+    padding: 1rem;
+}
+
+.person {
+    background-color: white;
+    border-radius: 1rem;
+    width: 17rem;
+}
+
+.lista {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20rem 0 20rem;
+}
+
+.coek1 {
+    margin: 1rem;
+    position: relative;
+    left: -5px;
+}
+
+.ime {
+    text-align: center;
+    border-bottom: solid 2px black;
+    margin: 0 1rem 0 1rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.karak {
+    text-align: justify;
+    padding: 0 1rem 0 1rem;
+    font-weight: bold;
+}
+
+.naslov1 {
+    color: white;
+}
+
+.tekstce {
+    margin-left: 5rem;
+}
+
+.mapa {
+    width: 40rem;
+    margin-right: 5rem;
+}
+
+.contentss {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mapainfo {
+    position: relative;
+    right: -100rem;
+    top: 1rem;
+    margin-bottom: 4rem;
+}
+
+.homes,
+.abouts,
+.contacts {
+    color: lightgreen;
+}
+
+.nav__link:hover {
+    color: lightgreen;
+}
