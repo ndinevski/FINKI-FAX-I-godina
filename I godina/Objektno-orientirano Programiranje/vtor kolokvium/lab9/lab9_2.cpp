@@ -21,14 +21,14 @@ class NumbersNotDivisibleException{
             this->divisor = divisor;
         }
         void message(){
-            cout<<"Division by "<<divisor<<" not allowed"<<endl;
+            cout<<"Division by "<<divisor<<" is not supported"<<endl;
         }
 };
 
 class ArrayFullException{
     public:
         void message(){
-            cout<<"The array is full.Increase the capacity"<<endl;
+            cout<<"The array is full. Increase the capacity"<<endl;
         }
 };
 
@@ -39,7 +39,7 @@ class IndexOutOfBoundsException{
             this->index = index;
         }
         void message(){
-            cout<<"Index "<<index<<" out of bounds"<<endl;
+            cout<<"Index "<<index<<" is out of bounds"<<endl;
         }
 };
 
@@ -50,7 +50,7 @@ class NumberIsNotPositiveException{
             this->number = number;
         }
         void message(){
-            cout<<"Number "<<number<<" is not positive integer."<<endl;
+            cout<<"Number "<<number<<" is not positive integer"<<endl;
         }
 };
 class PositiveIntegers{
@@ -58,6 +58,14 @@ class PositiveIntegers{
         int * numbers;
         int n;
         int max;
+        void cpys(const PositiveIntegers& o){
+            n=o.n;
+            max=o.max;
+            numbers = new int[n];
+            for(int i=0; i<n; i++){
+                numbers[i]=o.numbers[i];
+            }
+        }
     public:
         PositiveIntegers(){
             max=0;
@@ -69,9 +77,15 @@ class PositiveIntegers{
             this->n=0;
             numbers = new int[0];
         }
-        PositiveIntegers(int * numbers, int n, int max){
-            this->max=max;
-            copy(numbers,numbers+n,this->numbers);
+        PositiveIntegers(const PositiveIntegers & other){
+            cpys(other);
+        }
+        PositiveIntegers & operator = (const PositiveIntegers & other){
+            if(this!=&other){
+                delete [] numbers;
+                cpys(other);
+            }
+            return *this;
         }
 
         ~PositiveIntegers(){
@@ -96,45 +110,30 @@ class PositiveIntegers{
             return *this;
         }
         PositiveIntegers operator *(int nov){
-            int temp[n];
-            copy(numbers,numbers+n,temp);
+            PositiveIntegers k(*this);
             for(int i=0;i<n;i++){
-                temp[i]*=nov;
+                k.numbers[i]*=nov;
             }
-            int capacity = max;
-            PositiveIntegers t(temp, n, capacity);
-            return t;
-
+            return k;
         }
-        PositiveIntegers operator /(int number){
+        PositiveIntegers operator /(int nov){
             //TOOD
-            // if(nov==0){
-            //     throw ArithmeticException();
-            // }
-            // for(int i=0;i<n;i++){
-            //     if(numbers[i]%nov!=0){
-            //         throw NumbersNotDivisibleException(nov);
-            //     }
-            // }
-            // int * temp = new int[n];
-            // copy(numbers,numbers+n,temp);
-            // for(int i=0;i<n;i++){
-            //     temp[i]/=nov;
-            // }
-            // int capacity = max;
-            // return PositiveIntegers (temp, n,capacity);
-        //     if(number == 0)
-        //     throw (ArithmeticException());
-        // for(int i=0;i<n;i++)
-        //     if(numbers[i]%number != 0)
-        //         throw (NumbersNotDivisibleException(number));
-        // PositiveIntegers p(*this);
-        // for(int i=0;i<n;i++)
-        //     p.numbers[i]/=number;
-        // return p;
+            if(nov==0){
+                throw ArithmeticException();
+            }
+            for(int i=0;i<n;i++){
+                if(numbers[i]%nov!=0){
+                    throw NumbersNotDivisibleException(nov);
+                }
+            }
+            PositiveIntegers k(*this);
+            for(int i=0;i<n;i++){
+                k.numbers[i]/=nov;
+            }
+            return k;
         }
         int operator [] (int i){
-            if(i>=n){
+            if(i>=n || i<0){
                 throw IndexOutOfBoundsException(i);
             }
             return numbers[i];
@@ -159,19 +158,19 @@ int main() {
         try{
 		pi+=number;
         }
-        catch (ArithmeticException a){
+        catch (ArithmeticException& a){
         a.message();
         }
-        catch (NumbersNotDivisibleException a){
+        catch (NumbersNotDivisibleException& a){
             a.message();
         }
-        catch (NumberIsNotPositiveException a){
+        catch (NumberIsNotPositiveException& a){
             a.message();
         }
-        catch (IndexOutOfBoundsException a){
+        catch (IndexOutOfBoundsException& a){
             a.message();
         }
-        catch (ArrayFullException a){
+        catch (ArrayFullException &a){
             a.message();
         }
 	}
@@ -191,19 +190,19 @@ int main() {
         try{
 		pi+=number;    
         }   
-        catch (ArithmeticException a){
+        catch (ArithmeticException &a){
         a.message();
     }
-    catch (NumbersNotDivisibleException a){
+    catch (NumbersNotDivisibleException &a){
         a.message();
     }
-    catch (NumberIsNotPositiveException a){
+    catch (NumberIsNotPositiveException &a){
         a.message();
     }
-    catch (IndexOutOfBoundsException a){
+    catch (IndexOutOfBoundsException &a){
         a.message();
     }
-    catch (ArrayFullException a){
+    catch (ArrayFullException& a){
         a.message();
     } 
 	}
@@ -214,33 +213,33 @@ int main() {
 	
 	cout<<"===TESTING DIVISION==="<<endl;	
 	try{
-	pi1 = pi/0;
-	pi1.print();
+        pi1 = pi/0;
+        pi1.print();
     }
-    catch (ArithmeticException a){
+    catch (ArithmeticException &a){
         a.message();
     }
-    catch (NumbersNotDivisibleException a){
+    catch (NumbersNotDivisibleException &a){
         a.message();
     }
     try{
-	pi1 = pi/1;
-	pi1.print();	
+        pi1 = pi/1;
+        pi1.print();	
     }
-    catch (ArithmeticException a){
+    catch (ArithmeticException &a){
         a.message();
     }
-    catch (NumbersNotDivisibleException a){
+    catch (NumbersNotDivisibleException & a){
         a.message();
     }
 	try{
-	pi1 = pi/2;
-	pi1.print();
+        pi1 = pi/2;
+        pi1.print();
     }
-    catch (ArithmeticException a){
+    catch (ArithmeticException &a){
         a.message();
     }
-    catch (NumbersNotDivisibleException a){
+    catch (NumbersNotDivisibleException& a){
         a.message();
     }
     
@@ -249,29 +248,79 @@ int main() {
 	pi1 = pi*3;
 	pi1.print();
 
+	cout<<"===TESTING [] ==="<<endl;
     try{
-	cout<<"===TESTING [] ==="<<endl;	
 	cout<<"PositiveIntegers[-1] = "<<pi[-1]<<endl;	
-	cout<<"PositiveIntegers[2] = "<<pi[2]<<endl;
-	cout<<"PositiveIntegers[3] = "<<pi[3]<<endl;	
-	cout<<"PositiveIntegers[12] = "<<pi[12]<<endl;
     }
-    catch (ArithmeticException a){
+    catch (ArithmeticException &a){
         a.message();
     }
-    catch (NumbersNotDivisibleException a){
+    catch (NumbersNotDivisibleException& a){
         a.message();
     }
-    catch (NumberIsNotPositiveException a){
+    catch (NumberIsNotPositiveException &a){
         a.message();
     }
-    catch (IndexOutOfBoundsException a){
+    catch (IndexOutOfBoundsException& a){
         a.message();
     }
-    catch (ArrayFullException a){
+    catch (ArrayFullException& a){
         a.message();
     }
-	
+    try{
+    cout<<"PositiveIntegers[2] = "<<pi[2]<<endl;
+    }
+    catch (ArithmeticException &a){
+        a.message();
+    }
+    catch (NumbersNotDivisibleException& a){
+        a.message();
+    }
+    catch (NumberIsNotPositiveException &a){
+        a.message();
+    }
+    catch (IndexOutOfBoundsException& a){
+        a.message();
+    }
+    catch (ArrayFullException& a){
+        a.message();
+    }
+    try{
+    cout<<"PositiveIntegers[3] = "<<pi[3]<<endl;	
+    }
+    catch (ArithmeticException &a){
+        a.message();
+    }
+    catch (NumbersNotDivisibleException& a){
+        a.message();
+    }
+    catch (NumberIsNotPositiveException &a){
+        a.message();
+    }
+    catch (IndexOutOfBoundsException& a){
+        a.message();
+    }
+    catch (ArrayFullException& a){
+        a.message();
+    }
+    try{
+    cout<<"PositiveIntegers[12] = "<<pi[12]<<endl;
+    }
+    catch (ArithmeticException &a){
+        a.message();
+    }
+    catch (NumbersNotDivisibleException& a){
+        a.message();
+    }
+    catch (NumberIsNotPositiveException &a){
+        a.message();
+    }
+    catch (IndexOutOfBoundsException& a){
+        a.message();
+    }
+    catch (ArrayFullException& a){
+        a.message();
+    }
 	
 	
 	return 0;
