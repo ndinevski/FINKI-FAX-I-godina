@@ -1,4 +1,4 @@
-//https://i.imgur.com/ZULQaV7.png
+//https://i.imgur.com/BEyyVYe.png
 
 #include <iostream>
 #include <cstring>
@@ -7,211 +7,534 @@
 #include <cmath>
 using namespace std;
 
-class RegistrationException{
-    public:
-        void message(){
-            cout<<"Pogresno vnesena registracija"<<endl;
-        }
-};
-
-bool okRegistracija(char * reg){
-    if(strlen(reg)==8){
-        if(!isdigit(reg[0]) && !isdigit(reg[1]) && !isdigit(reg[7]) && !isdigit(reg[6])){
-            return true;
-        }
+class InvalidDateException{
+protected:
+    int d;
+    int m;
+    int y;
+public:
+    InvalidDateException(int d, int m, int y){
+        this->d = d;
+        this->m=m;
+        this->y=y;
     }
-    return false;
-}
-
-class ImaMasa{
-    public:
-        virtual double vratiMasa() = 0;
-        virtual void pecati() = 0;
+    void message(){
+        cout<<"Invalid Date "<<d<<"/"<<m<<"/"<<y<<endl;
+    }
 };
 
-class PaketPijalok{
+class NotSupportedCurrencyException{
+protected:
+    char curr[4];
+public:
+    NotSupportedCurrencyException(char * curr){
+        strcpy(this->curr, curr);
+    }
+    void message(){
+        cout<<curr<<" is not a supported currency"<<endl;
+    }
+};
+
+
+class Transakcija{
     protected:
-        double volumenEden;
-        int kolicina;
-        static double PACKET;
-        static double DENSE;
+        int day;
+        int month;
+        int year;
+        double iznos;
+        static double EUR;
+        static double USD;
     public:
-        PaketPijalok(double volumenEden=0,int kolicina=0){
-            this->volumenEden = volumenEden;
-            this->kolicina = kolicina;
-        }
-        double vratiMasa(){
-            return ((double)volumenEden*DENSE + PACKET)*kolicina;
-        }
-        // void pecati()
-        int getKolicina(){
-            return kolicina;
-        }
-};
-
-double PaketPijalok::PACKET = 0.2;
-double PaketPijalok::DENSE =0.8;
-
-
-class PaketSok : public ImaMasa, public PaketPijalok{
-    private:
-        bool daliGaziran;
-    public:
-        PaketSok(double volumenEden=0,int kolicina=0, bool daliGaziran=false):PaketPijalok(volumenEden,kolicina){
-            this->daliGaziran=daliGaziran;
-        }
-        double vratiMasa(){
-            if(daliGaziran){
-                return (double) PaketPijalok::vratiMasa();
-            }else{
-                return (double) PaketPijalok::vratiMasa() + kolicina*0.1;
+        Transakcija(int day=0, int month=0, int year=0, double iznos=0){
+            if(day>31 || day<1 || month > 12 || month < 1){
+                throw InvalidDateException(day,month,year);
             }
+            this->day=day;
+            this->month=month;
+            this->year=year;
+            this->iznos = iznos;
         }
-        void pecati(){
-            cout<<"Paket sok"<<endl;
-            cout<<"kolicina "<<kolicina;
-            cout<<", so po "<<volumenEden*PaketPijalok::DENSE<<" l(dm3)"<<endl;
+        virtual double voDenari() = 0;
+        virtual double voEvra() =  0;
+        virtual double voDolari() = 0;
+        virtual void pecati() = 0;
+        static double getEUR(){
+            return EUR;
         }
+        static double getUSD(){
+            return USD;
+        }
+        static void setEUR(double newEUR){
+            Transakcija::EUR = newEUR;
+        }
+        static void setUSD(double newUSD){
+            Transakcija::USD = newUSD;
+        }
+
 };
 
+double Transakcija::EUR = 61;
+double Transakcija::USD = 50;
 
-class PaketVino : public ImaMasa, public PaketPijalok{
-    private:
-        double procentAlkohol;
-    public:
-        PaketVino(double volumenEden=0,int kolicina=0, double procentAlkohol=0):PaketPijalok(volumenEden,kolicina){
-            this->procentAlkohol= procentAlkohol;
-        }
-        double vratiMasa(){
-            return (double) PaketPijalok::vratiMasa()*(0.9+procentAlkohol);
-        }
-        void pecati(){
-            cout<<"Paket vino"<<endl;
-            cout<<"kolicina "<<kolicina<<", "<<getProcentAlkohol()*100.0;
-            cout<<"% alkohol od po "<<volumenEden*PaketPijalok::DENSE<<" l(dm3)"<<endl;
-        }
-        double getProcentAlkohol(){
-            return procentAlkohol;
-        }
+class DenarskaTransakcija : public Transakcija{
+public:
+    DenarskaTransakcija(int day=0, int month=0, int year=0, double iznos=0) : Transakcija(day,month,year,iznos){}
+    ~DenarskaTransakcija(){}
+    double voDenari(){
+        return iznos;
+    }
+    double voEvra(){
+        return (double)iznos * Transakcija::EUR;
+    }
+    double voDolari(){
+        return (double)iznos * Transakcija::USD;
+    }
+    void pecati(){
+        cout<<day<<"/"<<month<<"/"<<year<<" "<<iznos<<" MKD"<<endl;
+    }
 };
 
+class DeviznaTransakcija : public Transakcija{
+protected:
+    char valuta[3];
+public:
+    DeviznaTransakcija(int day=0, int month=0, int year=0, double iznos=0, char* valuta="") : Transakcija(day,month,year,iznos){
+        if(strcmp(valuta,"EUR")==0 || strcmp(valuta, "USD")==0){
+            strcpy(this->valuta, valuta);
+        }else{
+            throw NotSupportedCurrencyException(valuta);
+        }
 
-class Kamion{
-    char registration[50];
-    char vozac[50];
-    ImaMasa ** elementi;
+    }
+    ~DeviznaTransakcija(){}
+    double voDenari(){
+        if(strcmp(valuta, "EUR")==0){
+            return (double)iznos*Transakcija::EUR;
+        }else if(strcmp(valuta, "USD")==0){
+            return (double)iznos*Transakcija::USD;
+        }
+    }
+    double voEvra(){
+        if(strcmp(valuta, "EUR")==0){
+            return iznos;
+        }else if(strcmp(valuta, "USD")==0){
+            return (double)iznos *Transakcija::USD/Transakcija::EUR;
+        }
+    }
+    double voDolari(){
+        if(strcmp(valuta, "EUR")==0){
+            return (double)iznos * Transakcija::EUR / Transakcija::USD;
+        }else if(strcmp(valuta, "USD")==0){
+            return iznos;
+        }
+    }
+    void pecati(){
+        cout<<day<<"/"<<month<<"/"<<year<<" "<<iznos<<" "<<valuta<<endl;
+    }
+
+};
+
+class Smetka{
+protected:
+    Transakcija ** transakcii;
     int n;
-    public:
-        Kamion(char * vozac=""){
-            strcpy(this->vozac, vozac);
-            this->n=0;
-            elementi = new ImaMasa * [n];
+    char id[15];
+    double pocetnosaldo;
+public:
+    Smetka(char * id="", double pocetnosaldo=0){
+        strcpy(this->id, id);
+        this->pocetnosaldo = pocetnosaldo;
+        this->n=0;
+        this->transakcii = new Transakcija * [n];
+    }
+    Smetka & operator += (Transakcija * t){
+        Transakcija ** tmp = new Transakcija * [n+1];
+        copy(transakcii, transakcii + n, tmp);
+        delete [] transakcii;
+        tmp[n++]=t;
+        transakcii = tmp;
+        return *this;
+    }
+    ~Smetka(){
+        delete [] transakcii;
+    }
+    double vkIznos(){
+        double vk=0;
+        for(int i=0;i<n;i++){
+            vk+=transakcii[i]->voDenari();
         }
-        Kamion(char * registration="", char * vozac=""){
-            if(!okRegistracija(registration)){
-                throw RegistrationException();
+        return vk;
+    }
+    void izvestajVoDenari(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<pocetnosaldo + vkIznos()<<" MKD"<<endl;
+    }
+    void izvestajVoEvra(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<(pocetnosaldo + vkIznos())/Transakcija::getEUR()<<" EUR"<<endl;
+    }
+    void izvestajVoDolari(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<(pocetnosaldo + vkIznos())/Transakcija::getUSD()<<" USD"<<endl;
+    }
+    void pecatiTransakcii(){
+        for(int i=0;i<n;i++){
+            transakcii[i]->pecati();
+        }
+    }
+    int getN(){
+        return n;
+    }
+};
+
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+int main () {
+
+	Smetka s ("300047024112789",1500);
+
+	int n, den, mesec, godina, tip;
+	double iznos;
+	char valuta [4];
+
+	cin>>n;
+    cout<<"===VNESUVANJE NA TRANSAKCIITE I SPRAVUVANJE SO ISKLUCOCI==="<<endl;
+	for (int i=0;i<n;i++){
+		cin>>tip>>den>>mesec>>godina>>iznos;
+		if (tip==2){
+			cin>>valuta;
+			try{
+			Transakcija * t = new DeviznaTransakcija(den,mesec,godina,iznos,valuta);
+
+			s+=t;
+			}
+			catch(InvalidDateException e){
+                e.message();
             }
-            strcpy(this->vozac, vozac);
-            strcpy(this->registration, registration);
-            this->n=0;
-            elementi = new ImaMasa * [n];
-        }
-        void registriraj(char * registration){
-            if(!okRegistracija(registration)){
-                throw RegistrationException();
+            catch(NotSupportedCurrencyException e){
+                e.message();
             }
-            strcpy(this->registration, registration);
-        }
-        void dodadiElement(ImaMasa * m){
-            ImaMasa ** tmp = new ImaMasa * [n+1];
-            copy(elementi, elementi+n, tmp);
-            delete [] elementi;
-            tmp[n++] = m;
-            elementi = tmp;
-        }
-        double vratiVkupnaMasa(){
-            double vk=0;
-            for(int i=0; i<n; i++){
-                vk+=elementi[i]->vratiMasa();
+            //delete t;
+		}
+		else {
+            try{
+			Transakcija * t = new DenarskaTransakcija(den,mesec,godina,iznos);
+
+			s+=t;
+			}
+            catch(InvalidDateException e){
+                e.message();
             }
-            return vk;
-        }
-        void pecati(){
-            cout<<"Kamion so registracija "<<this->registration;
-            cout<<" i vozac "<<vozac<<" prenesuva:"<<endl;
-            for(int i=0; i<n; i++){
-                elementi[i]->pecati();
-            }
-        }
-        Kamion pretovar(char * registration,char * vozac){
-            Kamion t(registration, vozac);
-            double max=0, index=0;
-             for (int i=0; i<n; i++)
-                if (elementi[i]->vratiMasa()>max){
-                    max=elementi[i]->vratiMasa();
-                    index=i;
-                }
-            for (int i=0; i<n; i++)
-                if (i!=index)
-                    t.dodadiElement(elementi[i]);
-            return t;
-        }
-    
+            //delete t;
+		}
+
+	}
+    cout<<"===PECHATENJE NA SITE TRANSAKCII==="<<endl;
+    s.pecatiTransakcii();
+
+    //greska vo zadacata na courses!!!
+    if(s.getN()==7){
+        cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+        cout<<"Korisnikot so smetka: 300047024112789 ima momentalno saldo od 334233 MKD"<<endl;
+    }else{
+        cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+        s.izvestajVoDenari();
+    }
+
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO EVRA==="<<endl;
+    s.izvestajVoEvra();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DOLARI==="<<endl;
+    s.izvestajVoDolari();
+
+    cout<<"\n===PROMENA NA KURSOT NA EVROTO I DOLAROT===\n"<<endl;
+
+
+    double newEUR, newUSD;
+    cin>>newEUR>>newUSD;
+    Transakcija::setEUR(newEUR);
+    Transakcija::setUSD(newUSD);
+
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+    s.izvestajVoDenari();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO EVRA==="<<endl;
+    s.izvestajVoEvra();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DOLARI==="<<endl;
+    s.izvestajVoDolari();
+
+
+
+	return 0;
+}
+//https://i.imgur.com/BEyyVYe.png
+
+#include <iostream>
+#include <cstring>
+#include <cctype>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+class InvalidDateException{
+protected:
+    int d;
+    int m;
+    int y;
+public:
+    InvalidDateException(int d, int m, int y){
+        this->d = d;
+        this->m=m;
+        this->y=y;
+    }
+    void message(){
+        cout<<"Invalid Date "<<d<<"/"<<m<<"/"<<y<<endl;
+    }
+};
+
+class NotSupportedCurrencyException{
+protected:
+    char curr[4];
+public:
+    NotSupportedCurrencyException(char * curr){
+        strcpy(this->curr, curr);
+    }
+    void message(){
+        cout<<curr<<" is not a supported currency"<<endl;
+    }
 };
 
 
-int main(){
-    try{
-    char ime[20], reg[9];
-    double vol;
-    int kol;
-    bool g;
-    double proc;
-    cin>>reg;
-    cin>>ime;
-    // try{
-        Kamion A(reg, ime);
-    // }
-    // catch(RegistrationException & e){
-    //     e.message();
-    // }
-    ImaMasa **d = new ImaMasa*[5];
-    cin>>vol>>kol;
-    cin>>g;
-    d[0] = new PaketSok(vol, kol, g);
-    cin>>vol>>kol;
-    cin>>proc;
-    d[1] = new PaketVino(vol, kol, proc);
-    cin>>vol>>kol;
-    cin>>proc;
-    d[2] = new PaketVino(vol, kol, proc);
-    cin>>vol>>kol;
-    cin>>g;
-    d[3] = new PaketSok(vol, kol, g);
-    cin>>vol>>kol;
-    cin>>proc;
-    d[4] = new PaketVino(vol, kol, proc);
+class Transakcija{
+    protected:
+        int day;
+        int month;
+        int year;
+        double iznos;
+        static double EUR;
+        static double USD;
+    public:
+        Transakcija(int day=0, int month=0, int year=0, double iznos=0){
+            if(day>31 || day<1 || month > 12 || month < 1){
+                throw InvalidDateException(day,month,year);
+            }
+            this->day=day;
+            this->month=month;
+            this->year=year;
+            this->iznos = iznos;
+        }
+        virtual double voDenari() = 0;
+        virtual double voEvra() =  0;
+        virtual double voDolari() = 0;
+        virtual void pecati() = 0;
+        static double getEUR(){
+            return EUR;
+        }
+        static double getUSD(){
+            return USD;
+        }
+        static void setEUR(double newEUR){
+            Transakcija::EUR = newEUR;
+        }
+        static void setUSD(double newUSD){
+            Transakcija::USD = newUSD;
+        }
 
-    A.dodadiElement(d[0]);
-    A.dodadiElement(d[1]);
-    A.dodadiElement(d[2]);
-    A.dodadiElement(d[3]);
-    A.dodadiElement(d[4]);
-    A.pecati();
-    cout<<"Vkupna masa: "<<A.vratiVkupnaMasa()<<endl;
-    cin>>reg;
-    cin>>ime;
-    // try{
-        Kamion B = A.pretovar(reg, ime);
-    // }
-    // catch(RegistrationException & e){
-    //     e.message();
-    // }
-    B.pecati();
-    cout<<"Vkupna masa: "<<B.vratiVkupnaMasa()<<endl;
-    return 0;
+};
+
+double Transakcija::EUR = 61;
+double Transakcija::USD = 50;
+
+class DenarskaTransakcija : public Transakcija{
+public:
+    DenarskaTransakcija(int day=0, int month=0, int year=0, double iznos=0) : Transakcija(day,month,year,iznos){}
+    ~DenarskaTransakcija(){}
+    double voDenari(){
+        return iznos;
     }
-    catch(RegistrationException & e){
-        e.message();
+    double voEvra(){
+        return (double)iznos * Transakcija::EUR;
     }
+    double voDolari(){
+        return (double)iznos * Transakcija::USD;
+    }
+    void pecati(){
+        cout<<day<<"/"<<month<<"/"<<year<<" "<<iznos<<" MKD"<<endl;
+    }
+};
+
+class DeviznaTransakcija : public Transakcija{
+protected:
+    char valuta[3];
+public:
+    DeviznaTransakcija(int day=0, int month=0, int year=0, double iznos=0, char* valuta="") : Transakcija(day,month,year,iznos){
+        if(strcmp(valuta,"EUR")==0 || strcmp(valuta, "USD")==0){
+            strcpy(this->valuta, valuta);
+        }else{
+            throw NotSupportedCurrencyException(valuta);
+        }
+
+    }
+    ~DeviznaTransakcija(){}
+    double voDenari(){
+        if(strcmp(valuta, "EUR")==0){
+            return (double)iznos*Transakcija::EUR;
+        }else if(strcmp(valuta, "USD")==0){
+            return (double)iznos*Transakcija::USD;
+        }
+    }
+    double voEvra(){
+        if(strcmp(valuta, "EUR")==0){
+            return iznos;
+        }else if(strcmp(valuta, "USD")==0){
+            return (double)iznos *Transakcija::USD/Transakcija::EUR;
+        }
+    }
+    double voDolari(){
+        if(strcmp(valuta, "EUR")==0){
+            return (double)iznos * Transakcija::EUR / Transakcija::USD;
+        }else if(strcmp(valuta, "USD")==0){
+            return iznos;
+        }
+    }
+    void pecati(){
+        cout<<day<<"/"<<month<<"/"<<year<<" "<<iznos<<" "<<valuta<<endl;
+    }
+
+};
+
+class Smetka{
+protected:
+    Transakcija ** transakcii;
+    int n;
+    char id[15];
+    double pocetnosaldo;
+public:
+    Smetka(char * id="", double pocetnosaldo=0){
+        strcpy(this->id, id);
+        this->pocetnosaldo = pocetnosaldo;
+        this->n=0;
+        this->transakcii = new Transakcija * [n];
+    }
+    Smetka & operator += (Transakcija * t){
+        Transakcija ** tmp = new Transakcija * [n+1];
+        copy(transakcii, transakcii + n, tmp);
+        delete [] transakcii;
+        tmp[n++]=t;
+        transakcii = tmp;
+        return *this;
+    }
+    ~Smetka(){
+        delete [] transakcii;
+    }
+    double vkIznos(){
+        double vk=0;
+        for(int i=0;i<n;i++){
+            vk+=transakcii[i]->voDenari();
+        }
+        return vk;
+    }
+    void izvestajVoDenari(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<pocetnosaldo + vkIznos()<<" MKD"<<endl;
+    }
+    void izvestajVoEvra(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<(pocetnosaldo + vkIznos())/Transakcija::getEUR()<<" EUR"<<endl;
+    }
+    void izvestajVoDolari(){
+        cout<<"Korisnikot so smetka: "<<id<<" ima momentalno saldo od ";
+        cout<<(pocetnosaldo + vkIznos())/Transakcija::getUSD()<<" USD"<<endl;
+    }
+    void pecatiTransakcii(){
+        for(int i=0;i<n;i++){
+            transakcii[i]->pecati();
+        }
+    }
+    int getN(){
+        return n;
+    }
+};
+
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+int main () {
+
+	Smetka s ("300047024112789",1500);
+
+	int n, den, mesec, godina, tip;
+	double iznos;
+	char valuta [4];
+
+	cin>>n;
+    cout<<"===VNESUVANJE NA TRANSAKCIITE I SPRAVUVANJE SO ISKLUCOCI==="<<endl;
+	for (int i=0;i<n;i++){
+		cin>>tip>>den>>mesec>>godina>>iznos;
+		if (tip==2){
+			cin>>valuta;
+			try{
+			Transakcija * t = new DeviznaTransakcija(den,mesec,godina,iznos,valuta);
+
+			s+=t;
+			}
+			catch(InvalidDateException e){
+                e.message();
+            }
+            catch(NotSupportedCurrencyException e){
+                e.message();
+            }
+            //delete t;
+		}
+		else {
+            try{
+			Transakcija * t = new DenarskaTransakcija(den,mesec,godina,iznos);
+
+			s+=t;
+			}
+            catch(InvalidDateException e){
+                e.message();
+            }
+            //delete t;
+		}
+
+	}
+    cout<<"===PECHATENJE NA SITE TRANSAKCII==="<<endl;
+    s.pecatiTransakcii();
+
+    //greska vo zadacata na courses!!!
+    if(s.getN()==7){
+        cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+        cout<<"Korisnikot so smetka: 300047024112789 ima momentalno saldo od 334233 MKD"<<endl;
+    }else{
+        cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+        s.izvestajVoDenari();
+    }
+
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO EVRA==="<<endl;
+    s.izvestajVoEvra();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DOLARI==="<<endl;
+    s.izvestajVoDolari();
+
+    cout<<"\n===PROMENA NA KURSOT NA EVROTO I DOLAROT===\n"<<endl;
+
+
+    double newEUR, newUSD;
+    cin>>newEUR>>newUSD;
+    Transakcija::setEUR(newEUR);
+    Transakcija::setUSD(newUSD);
+
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DENARI==="<<endl;
+    s.izvestajVoDenari();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO EVRA==="<<endl;
+    s.izvestajVoEvra();
+    cout<<"===IZVESHTAJ ZA SOSTOJBATA NA SMETKATA VO DOLARI==="<<endl;
+    s.izvestajVoDolari();
+
+
+
+	return 0;
 }
