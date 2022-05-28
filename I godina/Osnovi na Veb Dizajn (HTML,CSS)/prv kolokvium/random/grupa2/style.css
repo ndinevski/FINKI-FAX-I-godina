@@ -1,0 +1,222 @@
+/* Nikola Dinevski 216045 */
+
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 11px;
+    line-height: 1.5;
+    font-style: italic;
+    color: rgb(101, 101, 101);
+    background: rgb(9, 72, 109);
+}
+
+.container {
+    width: 780px;
+    text-align: center;
+    margin: auto;
+    background: url(img/cover.png);
+    background-position-x: 0;
+    background-position-y: 0;
+    position: relative;
+}
+
+.top {
+    /* position: relative; */
+    background-image: url(img/cover_top.png), url(img/game-of-thrones.jpg), url(img/ice-and-fire.jpg);
+    background-repeat: no-repeat no-repeat;
+    background-position-x: 0px, 80px, 60px;
+    background-position-y: 0, 30px, 70px;
+}
+
+.top header {
+    /* top: 0px;
+    left: 0px; */
+    margin: 0;
+    margin-left: 5px;
+    width: 48%;
+    display: none;
+}
+
+.top .summary p:nth-child(1) {
+    /* top: 0px;
+    right: 0px; */
+    width: 25%;
+    margin-left: 400px;
+    padding-top: 50px;
+    text-align: left;
+}
+
+.top .summary p:nth-child(2) {
+    /* top: 0px;
+    right: 0px; */
+    width: 8%;
+    margin-left: 620px;
+    padding-top: 30px;
+    background: url(img/bookmark.jpg) no-repeat;
+    background-position-y: 20px;
+    color: white;
+    position: absolute;
+    top: -15px;
+}
+
+.top .summary p:nth-child(2) a {
+    color: white;
+}
+
+.top .introduction {
+    padding-top: 50px;
+    background-image: url(img/introduction.png), url(img/img_1.jpg);
+    background-repeat: no-repeat no-repeat;
+    background-position-x: 150px, 40px;
+    background-position-y: -0px, 30px;
+}
+
+.top .introduction h3 {
+    display: none;
+}
+
+.top .introduction p {
+    width: 43%;
+    margin-left: 400px;
+    text-align: left;
+}
+
+.main .about {
+    position: relative;
+    background-image: url(img/about.png), url(img/img_2.jpg);
+    /* background-image: url(img/img_2.jpg); */
+    background-repeat: no-repeat;
+    background-position-x: 420px, 395px;
+    background-position-y: -10px, 50px;
+    padding-top: 20px;
+}
+
+.main .about h3 {
+    display: none;
+    top: 0px;
+    right: 0px;
+    width: 48%;
+    margin-left: 300px;
+}
+
+.main .about p {
+    top: 0px;
+    right: 0px;
+    width: 43%;
+    margin-left: 30px;
+    text-align: right;
+}
+
+.main .people {
+    position: relative;
+    background-image: url(img/people.png), url(img/img_3.jpg);
+    /* background-image: url(img/img_2.jpg); */
+    background-repeat: no-repeat no-repeat;
+    background-position-x: 200px, 35px;
+    background-position-y: -10px, 30px;
+    padding-top: 15px;
+}
+
+.main .people h3 {
+    display: none;
+    top: 0px;
+    right: 0px;
+    width: 48%;
+    margin-left: 300px;
+}
+
+.main .people p {
+    width: 43%;
+    margin-left: 400px;
+    text-align: left;
+}
+
+.main .people2 {
+    width: 43%;
+    text-align: left;
+    margin-left: 400px;
+    padding-top: 15px;
+}
+
+.main footer {
+    margin-left: 360px;
+    margin-top: 70px;
+    padding-bottom: 200px;
+}
+
+.main footer a {
+    padding: 10px;
+    color: gray;
+    text-decoration: none;
+}
+
+.main footer a:HOVER {
+    color: red;
+    border: 1px solid gray;
+}
+
+.sidebar {
+    width: 45%;
+    position: absolute;
+    bottom: 100px;
+}
+
+.sidebar h3 {
+    display: none;
+}
+
+.most-visited {
+    background: url(img/most-visited.png) no-repeat;
+    background-position-x: 125px;
+    background-position-y: 0px;
+}
+
+.most-visited .navigation {
+    padding-top: 20px;
+}
+
+.navigation ul {
+    width: 30%;
+    text-align: left;
+    margin-left: 106px;
+}
+
+.navigation ul a {
+    text-decoration: none;
+    color: rgb(17, 17, 215);
+}
+
+.navigation ul a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.navigation ul li {
+    list-style-type: none;
+    list-style-image: url(img/bull.png);
+}
+
+.backstage-links {
+    background-image: url(img/backstage.png), url(img/notes.jpg);
+    background-repeat: no-repeat no-repeat;
+    height: 270px;
+    text-align: left;
+    background-position-x: 90px, 80px;
+    background-position-y: 20px, 0;
+}
+
+.backstage-links ul {
+    list-style-type: none;
+    padding-top: 60px;
+    margin-left: 80px;
+}
+
+.backstage-links ul a {
+    text-decoration: none;
+    font-size: 16px;
+    color: rgb(17, 17, 215);
+}
+
+.backstage-links ul a:hover {
+    text-decoration: underline;
+    color: red;
+}
