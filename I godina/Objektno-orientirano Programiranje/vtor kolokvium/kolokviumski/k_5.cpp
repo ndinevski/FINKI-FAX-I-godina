@@ -5,7 +5,7 @@
 #include <cmath>
 #include <algorithm>
 using namespace std;
-#define MAX 50
+#define MAX 117
 
 enum typeC{
     standard,   
@@ -15,6 +15,7 @@ enum typeC{
 
 class UserExistsException{
     public:
+        UserExistsException(){}
         void message(){
             cout<<"The user already exists in the list!"<<endl;
         }
@@ -95,6 +96,7 @@ class FINKI_bookstore{
             for(int i=0;i<n;i++){
                 if(!strcmp(nov.getEmail(), niza[i].getEmail())){
                     throw UserExistsException();
+                    return *this;
                 }
             }
             Customer * tmp = new Customer[n+1];
