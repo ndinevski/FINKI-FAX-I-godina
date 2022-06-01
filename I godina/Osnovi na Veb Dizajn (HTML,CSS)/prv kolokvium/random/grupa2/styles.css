@@ -1,0 +1,150 @@
+/* Tamara Kostova 216065 */
+
+* {
+    margin: auto;
+}
+
+body {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    background-color: steelblue;
+    height: 1400px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 770px;
+    height: available;
+    background: url("img/cover_top.png") no-repeat, url("img/cover.png") repeat-y, url("img/cover_bot.png") no-repeat;
+}
+
+#div-top {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 770px;
+    display: flex;
+    flex-direction: column;
+}
+
+#div-summary {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 330px;
+    padding-left: 360px;
+    background: url("img/game-of-thrones.jpg") no-repeat, url("img/ice-and-fire.jpg") no-repeat;
+    background-position: 30px 20px, 10px 100px;
+}
+
+#div-summary p:nth-of-type(2) {
+    background: url("img/bookmark.jpg");
+    background-size: contain;
+    width: 81px;
+    height: 131px;
+    padding: 10px;
+    color: white;
+}
+
+#div-introduction {
+    padding-left: 360px;
+    width: 330px;
+    background: url("img/introduction.png") no-repeat, url("img/img_1.jpg") no-repeat;
+    background-position: 100px 0, 0 50px;
+    padding-bottom: 70px;
+}
+
+#div-main {
+    height: 900px;
+    width: 770px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#div-about {
+    text-align: right;
+    align-self: flex-start;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-right: 360px;
+    width: 330px;
+    background: url("img/about.png") no-repeat, url("img/img_2.jpg") no-repeat;
+    background-position: 370px 0, 350px 50px;
+}
+
+#div-people,
+#div-people2 {
+    padding: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-left: 370px;
+    padding-right: 10px;
+    align-self: end;
+    width: 330px;
+}
+
+#div-people {
+    margin-top: 10px;
+    background: url("img/people.png") no-repeat, url("img/img_3.jpg") no-repeat;
+    background-position: 150px 0, 10px 50px;
+}
+
+footer {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-top: 50px;
+    padding-left: 350px;
+}
+
+footer a {
+    margin-left: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.extra-link {
+    list-style-type: none;
+}
+
+h1,
+h2,
+h3 {
+    display: none;
+}
+
+.wrapper {
+    flex-grow: 3;
+    flex-shrink: 3;
+    width: 770px;
+    display: flex;
+    flex-direction: column;
+}
+
+#div-most-visited {
+    background: url("img/most-visited.png") no-repeat;
+    padding-top: 30px;
+    padding-right: 450px;
+    margin-top: -380px;
+}
+
+#div-most-visited li {
+    list-style-image: url('img/bull.png');
+}
+
+#div-backstage-links {
+    background: url("img/backstage.png") no-repeat, url("img/notes.jpg") no-repeat;
+    background-position: 5px 20px, 0 0;
+    margin-top: 10px;
+    padding-top: 60px;
+    padding-right: 350px;
+    width: 252px;
+    height: 249px;
+    text-align: justify;
+    line-height: 25px;
+}

@@ -1,0 +1,298 @@
+/* NIKOLA DINEVSKI 216045 */
+
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 14px;
+    background-image: url(../images/bg-body.gif);
+    background-repeat: repeat;
+    line-height: 1.5;
+    color: gray;
+}
+
+#footer {
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 30px;
+    color: rgb(126, 126, 126);
+}
+
+#page {
+    width: 900px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-color: white;
+    /* background  : url(../images/icons.gif) no-repeat; */
+    border: 0.1px solid lightgray;
+}
+
+#logo {
+    display: inline-block;
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 5px;
+}
+
+#header ul {
+    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 80px;
+    margin-left: 290px;
+    list-style-type: none;
+}
+
+#header ul a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding: 8px;
+}
+
+#header ul .selected {
+    text-decoration: none;
+    color: blue;
+    background-color: lightblue;
+}
+
+#header ul a:hover {
+    color: blue;
+    background-color: lightblue;
+}
+
+
+/* 
+#connect a {
+    width: 100px;
+    background-image: url(images/icons.gif) no-repeat;
+} */
+
+#header {
+    padding-bottom: 50px;
+}
+
+#main {
+    width: 60%;
+    background: url(images/bg-gallery.jpg);
+    margin-bottom: 100px;
+}
+
+#main>img {
+    width: 580px;
+}
+
+#sidebar {
+    width: 200px;
+    position: absolute;
+    margin-left: 540px;
+    margin-top: -690px;
+}
+
+#sidebar h4 {
+    color: blue;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-top: 1px solid blue;
+}
+
+#sidebar ul * {
+    padding-left: 30px;
+    text-align: left;
+}
+
+#sidebar ul {
+    list-style-type: none;
+}
+
+#favorites {
+    width: 170px;
+    position: absolute;
+    margin-top: -670px;
+    text-align: center;
+    background-color: lightgreen;
+    background-image: url(../images/bg-gallery.jpg);
+    margin-left: 15px;
+    height: 730px;
+}
+
+#favorites * {
+    padding: 15px;
+}
+
+.details {
+    width: 300px;
+    margin-left: 250px;
+}
+
+#articles {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 30px;
+}
+
+#articles h4 {
+    padding-top: 10px;
+}
+
+#articles #blogs h4 {
+    padding-left: 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: pink;
+    border-top: 2px solid pink;
+}
+
+#articles #news h4 {
+    padding-left: 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: purple;
+    border-top: 2px solid purple;
+}
+
+#articles #updates h4 {
+    padding-left: 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: yellow;
+    border-top: 2px solid yellow;
+}
+
+#articles #blogs ul {
+    list-style-type: none;
+}
+
+#blogs ul img {
+    float: left;
+    margin-right: 10px;
+}
+
+#articles #news {
+    border-left: 1px solid gray;
+}
+
+#articles #news ul {
+    list-style-type: none;
+}
+
+#articles #updates {
+    border-left: 1px solid gray;
+}
+
+.details {
+    text-align: justify;
+}
+
+.details h3 {
+    text-align: left;
+    font-size: 20px;
+    color: rgb(26, 175, 239);
+}
+
+.details h3 a {
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    text-decoration: none;
+    color: rgb(26, 175, 239);
+}
+
+.details h3 .author {
+    text-align: left;
+    font-size: 16px;
+    color: gray;
+}
+
+.details p a {
+    color: gray;
+}
+
+#updates p,
+#updates form {
+    width: 200px;
+    text-align: left;
+    margin-left: 45px;
+}
+
+#updates form * {
+    margin: 5px;
+}
+
+#updates form .button {
+    margin-left: 120px;
+    background-color: rgb(246, 191, 26);
+    border-radius: 2px;
+    color: black;
+}
+
+#updates form .txtfield {
+    background-image: url(images/input.gif);
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#updates ul {
+    margin-top: 80px;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#updates ul a {
+    text-decoration: none;
+    color: gray;
+}
+
+#updates ul .selected a {
+    color: yellow;
+}
+
+#articles #blogs ul a {
+    text-decoration: none;
+    color: pink;
+    display: block;
+}
+
+#blogs ul span {
+    display: block;
+    text-align: left;
+    color: lightgray;
+}
+
+#articles #news a {
+    text-decoration: none;
+    color: purple;
+    display: block;
+}
+
+#news ul .day {
+    color: rgb(45, 45, 45);
+}
+
+#news ul {
+    padding: auto;
+    margin: auto;
+}
+
+#favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#favorites h2 {
+    color: lightgreen;
+}
+
+#favorites img {
+    background-image: url(../images/owl.jpg);
+}
+
+#favorites a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: lightgray;
+    font-size: 15px;
+}
