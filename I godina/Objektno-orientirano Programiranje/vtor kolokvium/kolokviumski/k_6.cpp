@@ -29,7 +29,7 @@ class Game{
         char * getIme(){
             return ime;
         }
-        float getCenas(){
+        virtual float getCenas(){
             if (kupena){
                 return cena * 0.3;
             }
