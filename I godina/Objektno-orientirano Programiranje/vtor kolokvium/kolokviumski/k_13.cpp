@@ -11,13 +11,13 @@ class Image{
         char coek[50];
         int sirina;
         int visina;
-        void cpys(const Image & o){
-            this->ime = new char[strlen(o.ime)+1];
-            strcpy(this->ime,o.ime);
-            strcpy(this->coek,o.coek);
-            this->sirina = o.sirina;
-            this->visina =o.visina;
-        }
+        // void cpys(const Image & o){
+        //     this->ime = new char[strlen(o.ime)+1];
+        //     strcpy(this->ime,o.ime);
+        //     strcpy(this->coek,o.coek);
+        //     this->sirina = o.sirina;
+        //     this->visina =o.visina;
+        // }
     public:
         Image(const char * ime="untitled", const char * coek="unknown", const int sirina=800,const  int visina=800){
             this->ime = new char[strlen(ime)+1];
@@ -90,8 +90,8 @@ class Folder{
             this->n=0;
             niza = new Image * [n];
         }
-        float folderSize(){
-            float sum=0;
+        int folderSize(){
+            int sum=0;
             for(int i=0;i<n;i++){
                 sum+= niza[i]->fileSize();
             }
@@ -116,6 +116,19 @@ class Folder{
             niza = tmp;
             return *this;
         }
+
+        Folder & operator += (TransparentImage & nova){
+            Image ** tmp = new Image *[n+1];
+            copy(niza, niza + n, tmp);
+            delete [] niza;
+            tmp[n++] = new TransparentImage(nova);
+            niza = tmp;
+            return *this;
+        }
+
+
+
+
 
         friend ostream & operator <<(ostream & o , Folder & f){
             o<<f.imefolder<<" "<<f.sopstvenik<<endl<<"--"<<endl;
@@ -143,16 +156,16 @@ class Folder{
 };
 
 
-// Folder * max_folder_size(Folder * niza, int n){
-//     int max=0, indeks;
-//     for(int i=0;i<n;i++){
-//         if(niza[i].folderSize()>max){
-//             max=niza[i].folderSize();
-//             indeks=i;
-//         }
-//     }
-//     return niza[indeks];
-// }
+Folder & max_folder_size(Folder * niza, int n){
+    int max=0, indeks;
+    for(int i=0;i<n;i++){
+        if(niza[i].folderSize()>max){
+            max=niza[i].folderSize();
+            indeks=i;
+        }
+    }
+    return niza[indeks];
+}
 
 
 
@@ -387,7 +400,7 @@ int main() {
         dir_list[i] = dir;
       }
 
-    //   cout<<max_folder_size(dir_list, folders_num);
+      cout<<max_folder_size(dir_list, folders_num);
     }
     return 0;
 };

@@ -12,7 +12,23 @@ class BadInputException{
             cout<<"Greshna opisna ocenka"<<endl;
         }
 };
-
+char * cleanString (char * string) {
+	int count;
+	for (int i=0;i<strlen(string);i++)
+		if (isalpha(string[i]))
+			count++;
+	
+	char * newString = new char [count+1];
+	int j=0;
+	for (int i=0;i<strlen(string);i++){
+		if (isalpha(string[i])){
+			newString[j]=string[i];
+			++j;
+		}			
+	}
+    
+    return newString;
+}
 class StudentKurs{
    protected:
        char ime[30];
@@ -20,26 +36,19 @@ class StudentKurs{
        bool daliUsno;
        static int MAX;
        static int MINOCENKA;
-       void cpys(const StudentKurs&o){
-            strcpy(this->ime,o.ime);
-            this->ocenka=o.ocenka;
-            this->daliUsno=o.daliUsno;
-       }
+       
    public:
     StudentKurs(char* ime,int finalenIspit){
        strcpy(this->ime,ime);
        this->ocenka=finalenIspit;
        this->daliUsno=false;
      }
-     StudentKurs(const StudentKurs& other){
-         cpys(other);
-     }
-     StudentKurs& operator=(const StudentKurs& other){
-         if(this != &other){
-             cpys(other);
-         }
-         return *this;
-     }
+     
+     friend ostream &operator << (ostream &out, StudentKurs &sk){
+		out<<sk.ime<<" --- "<<sk.ocenka<<endl;
+		return out;
+	}
+    
      char * getIme(){
          return ime;
      }
@@ -52,6 +61,9 @@ class StudentKurs{
      static int getMAX(){
          return StudentKurs::MAX;
      }
+     virtual void ocena(){
+         return;
+     }
      //дополни ја класата
      static void setMAX(int a){
         StudentKurs::MAX = a;
@@ -59,9 +71,7 @@ class StudentKurs{
      static int getMIN(){
          return StudentKurs::MINOCENKA;
      }
-     virtual void pecatiStudent(){
-         cout<<ime<<" --- "<<ocenka<<endl;
-     }
+
 };
 int StudentKurs::MAX = 10;
 int StudentKurs::MINOCENKA = 6;
@@ -72,11 +82,9 @@ class StudentKursUsno: public StudentKurs{
     public:
         StudentKursUsno(char * ime,int finalenIspit): StudentKurs(ime, finalenIspit){
             this->usna = new char[0];
+            
         }
-        StudentKursUsno(const StudentKursUsno& other): StudentKurs(other){
-            this->usna = new char[strlen(other.usna)+1];
-            strcpy(this->usna, other.usna);
-        }
+        
         StudentKursUsno & operator +=(char * nova){
             for(int i=0;i<strlen(nova);i++){
                 if(!isalpha(nova[i])){
@@ -84,19 +92,17 @@ class StudentKursUsno: public StudentKurs{
 
                 }
             }
-            this->usna = new char[strlen(nova)+1];
-            strcpy(this->usna, nova);
+            usna = new char[strlen(nova)+1];
+            strcpy(usna, nova);
             return *this;
         }
-        void pecatiStudent(){
+        void ocena(){
             if(!strcmp(usna,"odlicen")){
-                cout<<ime<<" --- "<<ocenka+2<<endl;
+                ocenka+=2;
             }else if(!strcmp(usna, "dobro")){
-                cout<<ime<<" --- "<<ocenka+1<<endl;
+                ocenka+=1;
             }else if(!strcmp(usna, "losho")){
-                cout<<ime<<" --- "<<ocenka-1<<endl;
-            }else{
-                cout<<ime<<" --- "<<ocenka<<endl;
+                ocenka-=1;
             }
          
         }
@@ -132,20 +138,22 @@ public:
         cout<<"Kursot "<<naziv<<" go polozile: "<<endl;
         for(int i=0; i<broj;i++){
             if(studenti[i]->getOcenka()>=StudentKurs::getMIN()){
-                studenti[i]->pecatiStudent();
+                cout<<*studenti[i];
             }
         }
     }
 
     void postaviOpisnaOcenka(char * imes, char * opisna){
         for(int i=0; i<broj;i++){
+            StudentKursUsno * tmp = dynamic_cast<StudentKursUsno *>(studenti[i]);
             if(!strcmp(studenti[i]->getIme(),imes)){
-                StudentKursUsno * tmp = dynamic_cast<StudentKursUsno *>(studenti[i]);
                 if(tmp){
-                try{
+                    try{
+               
                 *tmp+=opisna;
                 } catch (BadInputException e){
                     e.message();
+                    *tmp+=cleanString(opisna);
                 }
                 }
             }
