@@ -5,7 +5,7 @@
 #include <cmath>
 #include <algorithm>
 using namespace std;
-#define MAX 117
+#define MAX 50
 
 enum typeC{
     standard,   
@@ -24,8 +24,8 @@ class UserExistsException{
 
 class Customer{
     protected:
-        char name[MAX];
-        char email[MAX];
+        char name[50];
+        char email[50];
         typeC type;
         static int popust;
         static int ppopust;
@@ -96,7 +96,6 @@ class FINKI_bookstore{
             for(int i=0;i<n;i++){
                 if(!strcmp(nov.getEmail(), niza[i].getEmail())){
                     throw UserExistsException();
-                    return *this;
                 }
             }
             Customer * tmp = new Customer[n+1];
@@ -135,6 +134,7 @@ class FINKI_bookstore{
 
         void setCustomers(Customer * niza, int n){
             this->n=n;
+            this->niza = new Customer[n];
             copy(niza, niza + n, this->niza);
         }
 
