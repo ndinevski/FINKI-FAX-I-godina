@@ -1,0 +1,139 @@
+/* Nikola Dinevski 216045 */
+
+body {
+    color: lightgray;
+    width: 950px;
+    margin: auto;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#header>a {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgb(25, 25, 77);
+}
+
+#header #navigation,
+#header #search {
+    background-color: lightgray;
+}
+
+#header #navigation {
+    width: 60%;
+    padding-right: 142px;
+}
+
+#header #search {
+    width: 25%;
+}
+
+#navigation ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation ul li {
+    padding: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.first {
+    background-color: rgb(90, 152, 173);
+}
+
+#navigation ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(55, 55, 126);
+}
+
+.txtfield {
+    width: 80%;
+    height: 40px;
+}
+
+#search .button {
+    position: relative;
+    left: -25px;
+    top: 7px;
+    background-image: url(../images/spotlight.gif);
+    border: none;
+    width: 16px;
+    height: 16px;
+}
+
+.body {
+    display: flex;
+}
+
+.details {
+    width: 21%;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.details p span {
+    color: blue;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 37px;
+}
+
+.images {
+    order: 2;
+}
+
+.footer ul {
+    display: flex;
+    background-color: lightgray;
+    justify-content: flex-start;
+}
+
+.footer ul li {
+    list-style-type: none;
+    width: 350px;
+    padding: 14px 10px 0 10px;
+    color: gray;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+    font-weight: bold;
+}
+
+.footer ul .selected {
+    background-color: rgb(151, 198, 201);
+}
+
+.footer ul li img {
+    float: left;
+    margin-right: 5px;
+}
+
+#contents {
+    background-image: url(../images/bg-content.gif);
+}
+
+#contents .body {
+    display: flex;
+    height: 500px;
+}
+
+#contents #sidebar {
+    width: 350px;
+    margin-right: 80px;
+}

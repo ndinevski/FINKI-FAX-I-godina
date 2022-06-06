@@ -1,7 +1,0 @@
-span {
-    background-color: white;
-}
-
-span+span {
-    background-color: blue;
-}

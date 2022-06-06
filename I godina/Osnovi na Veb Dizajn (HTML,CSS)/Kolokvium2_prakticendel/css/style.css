@@ -1,0 +1,318 @@
+/* 216045 - Nikola Dinevski */
+
+
+/* Good luck */
+
+
+/* Со среќа */
+
+body {
+    line-height: 1.5;
+    color: rgb(232, 232, 232);
+    background-color: rgb(50, 2, 2);
+}
+
+#container {
+    position: relative;
+    width: 960px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#banner {
+    width: 960px;
+    height: 149px;
+    background-image: url(../images/banner_bg.jpg);
+}
+
+#logo {
+    width: 303px;
+    height: 100px;
+    background-image: url(../images/logo.png);
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+
+#search_section {
+    border: none;
+    background-color: transparent;
+    width: 250px;
+    position: absolute;
+    left: 690px;
+    top: 100px;
+}
+
+#searchfield,
+#searchbutton {
+    background-color: rgb(217, 88, 88);
+    color: white;
+    font-weight: 10;
+    border: none;
+    border: 0.5px solid black;
+    height: 27px;
+}
+
+#searchfield {
+    width: 150px;
+    position: relative;
+    left: 20px;
+}
+
+#searchbutton {
+    position: relative;
+    left: 20px;
+    height: 30px;
+}
+
+#menu {
+    width: 960px;
+    background-image: url(../images/menu_bg.jpg);
+}
+
+#menu ul li {
+    list-style-type: none;
+    padding: 10px 32px;
+}
+
+#menu ul li:hover {
+    background-color: rgb(116, 115, 115);
+    border-radius: 50px 50px;
+    padding: 0px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#menu ul {
+    display: flex;
+    width: 820px;
+    position: relative;
+    top: -15px;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+#content {
+    display: flex;
+    margin-top: -29px;
+    flex-wrap: wrap;
+    background-color: rgb(99, 95, 95);
+}
+
+.column_w210 {
+    width: 220px;
+    padding: 10px;
+}
+
+.column_w430 {
+    width: 420px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#content>div:first-child {
+    padding-left: 30px;
+    margin-top: 30px;
+    border-right: 1px solid rgb(82, 79, 79);
+}
+
+#content>div:first-child a {
+    color: rgb(199, 154, 19);
+    font-weight: bold;
+}
+
+#content>div:first-child .header_01 {
+    padding-bottom: 18px;
+}
+
+.latest_news p {
+    margin-top: -7px;
+    padding-bottom: 7px;
+}
+
+.header_03 {
+    font-weight: bold;
+}
+
+.header_01 {
+    font-size: 18px;
+    color: rgb(199, 154, 19);
+    font-weight: bold;
+    text-align: left;
+}
+
+.column_w430 a {
+    color: rgb(199, 154, 19);
+}
+
+.column_w430 img {
+    margin-bottom: 20px;
+    border: 1.5px solid white;
+    position: relative;
+    left: 0px;
+}
+
+#content>div:nth-child(3) {
+    margin-top: 30px;
+    border-left: 1px solid rgb(82, 79, 79);
+}
+
+#menu .current {
+    background-color: rgb(116, 115, 115);
+    border-radius: 50px 50px;
+    padding: 7px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+#content>div:nth-child(3) a {
+    color: lightgray;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#content>div:nth-child(3) a:hover {
+    color: rgb(199, 154, 19);
+}
+
+#content>div:nth-child(3) li {
+    list-style-type: none;
+    list-style-image: url(../images/list_icon.jpg);
+}
+
+#content>div:nth-child(3) .header_01 {
+    position: relative;
+    left: 18px;
+}
+
+.column_w920 {
+    border-top: 1.5px solid rgb(82, 79, 79);
+    margin: 10px 25px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.column_w920 a {
+    color: rgb(199, 154, 19);
+}
+
+.column_w920 .column_w190:nth-child(1) {
+    height: 280px;
+    background: url(../images/image_02.jpg) no-repeat;
+    background-position-x: 20px;
+    background-position-y: 20px;
+}
+
+.column_w920 .column_w190:nth-child(1) p {
+    position: relative;
+    text-align: justify;
+    top: 130px;
+    padding: 10px;
+}
+
+.column_w920 .column_w190:nth-child(2) {
+    height: 280px;
+    background: url(../images/image_03.jpg) no-repeat;
+    background-position-x: 20px;
+    background-position-y: 20px;
+}
+
+.column_w920 .column_w190:nth-child(2) p {
+    position: relative;
+    text-align: justify;
+    top: 130px;
+    padding: 10px;
+}
+
+.column_w920 .column_w190:nth-child(3) {
+    height: 280px;
+    background: url(../images/image_04.jpg) no-repeat;
+    background-position-x: 20px;
+    background-position-y: 20px;
+}
+
+.column_w920 .column_w190:nth-child(3) p {
+    position: relative;
+    text-align: justify;
+    top: 130px;
+    padding: 10px;
+}
+
+.column_w920 .column_w190:nth-child(4) {
+    height: 280px;
+    background: url(../images/image_05.jpg) no-repeat;
+    background-position-x: 20px;
+    background-position-y: 20px;
+}
+
+.column_w920 .column_w190:nth-child(4) p {
+    position: relative;
+    text-align: justify;
+    top: 130px;
+    padding: 10px;
+}
+
+#footer {
+    width: 960px;
+    background-image: url(../images/footer.jpg);
+    height: 170px;
+}
+
+.footer_list {
+    padding-top: 20px;
+    display: flex;
+    width: 500px;
+    margin: auto;
+}
+
+.footer_list li {
+    list-style-type: none;
+    height: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    border-left: 0.5px solid gray;
+    margin-bottom: 10px;
+}
+
+.footer_list li:first-child {
+    border: none;
+}
+
+.footer_list li a {
+    text-decoration: none;
+    color: rgb(185, 185, 185);
+}
+
+#footer {
+    text-align: center;
+}
+
+#footer>a {
+    color: rgb(199, 154, 19);
+}
+
+.rc_btn_01 a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+body>div:last-child a {
+    color: rgb(199, 154, 19);
+}
+
+.rc_btn_01 {
+    background-color: rgb(48, 48, 48);
+    border-radius: 5px 5px;
+    width: 80px;
+    text-align: center;
+    position: relative;
+    left: 130px;
+    color: white;
+}

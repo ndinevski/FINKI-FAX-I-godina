@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Laboratoriska vezba lab5">
+    <meta name="keywords" content="HTML, CSS">
+    <meta name="author" content="Nikola Dinevski">
+    <title> FinkiPage </title>
+</head>
+
+<style>
+    a {
+        color: rgb(90, 123, 215);
+    }
+    
+    h1 {
+        margin-top: -40px;
+    }
+    
+    li {
+        width: 80px;
+        height: 30px;
+        padding-top: 10px;
+        border-radius: 5px;
+        margin-top: 30px;
+        float: left;
+        list-style: none;
+        padding-left: 30px;
+    }
+    
+    .nav {
+        margin-top: 0px;
+        float: right;
+        margin-right: 10px;
+    }
+    
+    .activated {
+        color: white;
+        background-color: rgb(90, 123, 215);
+    }
+    
+    section {
+        position: relative;
+        top: 50px;
+        height: 1000px;
+        margin: 0%;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .formular {
+        padding-top: 35px;
+        background-color: rgb(252, 252, 252);
+        margin-left: 25px;
+        margin-right: 25px;
+        padding-left: 200px;
+        padding-bottom: 25px;
+        border-radius: 10px;
+    }
+    
+    input,
+    select {
+        width: 700px;
+        padding: 10px;
+        margin-top: 3px;
+        margin-bottom: 15px;
+        border: solid rgb(226, 226, 226) 1px;
+        border-radius: 3px;
+    }
+    
+    input[type=submit] {
+        width: 400px;
+        padding: 5px;
+        margin-top: 3px;
+        margin-bottom: 10px;
+        border: solid rgb(226, 226, 226) 1px;
+        border-radius: 3px;
+        margin-left: 550px;
+        background-color: rgb(107, 170, 107);
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+    .gmap_canvas {
+        position: relative;
+        left: 400px;
+    }
+    
+    .heading {
+        position: relative;
+        left: 880px;
+        top: -970px;
+        font-size: 35px;
+        font-weight: bold;
+    }
+</style>
+
+<body style="background-color: white ;">
+
+    <nav>
+        <li>
+            <h1>Finki<span style="color:  rgb(132, 228, 132);">Page</span></h1>
+        </li>
+        <li class="nav activated"> <a href="./info.html" class="activated"> INFO </a> </li>
+        <li class="nav " style="padding-right: 17px;"> <a href="./contact.html"> CONTACT </a> </li>
+        <li class="nav "> <a href="./index.html"> HOME </a> </li>
+    </nav>
+
+    <section style="background-color: rgb(139, 231, 139);">
+        <div style="clear: both ;"></div>
+        <div class="center">
+            <iframe src="https://en.wikipedia.org/wiki/Framekiller" style="width: 1600px ; height:500px"></iframe>
+            <div class="mapouter">
+                <div class="gmap_canvas"><iframe width="1080" height="621" id="gmap_canvas" src="https://maps.google.com/maps?q=Faculty%20of%20Computer%20Science%20&%20Engineering%20Ruger%20Boshkovikj%2016,%20Skopje%201000&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                        scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net">fmovies</a><br>
+                    <style>
+                        .mapouter {
+                            position: relative;
+                            text-align: right;
+                            height: 621px;
+                            width: 1080px;
+                        }
+                    </style>
+                    <a href="https://www.embedgooglemap.net"></a>
+                    <style>
+                        .gmap_canvas {
+                            overflow: hidden;
+                            background: none!important;
+                            height: 621px;
+                            width: 1080px;
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p class="heading">
+        Information
+    </p>
+</body>
+
+</html>

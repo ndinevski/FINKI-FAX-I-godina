@@ -1,0 +1,356 @@
+body {
+    color: gray;
+    background-image: url(../images/bg-body.gif);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#page {
+    background-color: white;
+    margin: auto;
+    width: 980px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 1450px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#header {
+    margin-bottom: 20px;
+}
+
+#logo {
+    position: relative;
+    top: 30px;
+    left: 20px;
+}
+
+#navigation {
+    position: relative;
+    left: 290px;
+    top: -20px;
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
+li .selected a {
+    color: rgb(68, 116, 132) !important;
+}
+
+#navigation ul {
+    font-style: bold;
+}
+
+#navigation li {
+    text-decoration: none;
+    list-style-type: none;
+    padding: 5px;
+}
+
+#navigation li:hover {
+    background-color: lightblue;
+}
+
+#navigation .selected {
+    background-color: lightblue;
+}
+
+#navigation .selected a {
+    color: rgb(17, 148, 236);
+}
+
+#navigation a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#main {
+    position: relative;
+}
+
+#main>img {
+    position: relative;
+}
+
+#sidebar {
+    width: 270px;
+    position: relative;
+    right: -680px;
+    top: -685px;
+}
+
+#sidebar h4 {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: lightblue;
+    border-top: 1px solid lightblue;
+    padding-left: 20px;
+    width: 170px;
+}
+
+#sidebar ul li {
+    list-style-type: none;
+}
+
+#featured li {
+    margin-bottom: 20px;
+    ;
+}
+
+#featured li:nth-child(2) .image_right {
+    background-image: url(../images/dogs.jpg);
+    background-repeat: no-repeat;
+    height: 93px;
+}
+
+#featured li:nth-child(3) a {
+    color: lightblue;
+}
+
+#featured li:nth-child(4) .image_right {
+    background-image: url(../images/horse.jpg);
+    background-repeat: no-repeat;
+    height: 120px;
+}
+
+#featured li:nth-child(2) {
+    padding-top: 20px;
+}
+
+#featured li:nth-child(4) em,
+#featured li:nth-child(4) span {
+    width: 90px;
+    position: absolute;
+    top: 380px;
+    right: 10px;
+}
+
+#featured li:nth-child(4) span {
+    top: 480px;
+}
+
+#featured li em {
+    color: lightblue;
+    display: block;
+}
+
+#favorites {
+    position: absolute;
+    top: -378px;
+    left: 20px;
+    width: 202px;
+    height: 730px;
+    background-image: url(../images/bg-gallery.jpg);
+    text-align: center;
+}
+
+#favorites h2 {
+    width: 100px;
+    font-size: 25px;
+    color: rgb(21, 160, 21);
+    text-align: center;
+    line-height: 1;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 60px;
+}
+
+#favorites h2 span {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: rgb(107, 190, 107);
+}
+
+#favorites p {
+    background-image: url(../images/owl.jpg);
+    width: 150px;
+    height: 50px;
+    padding-bottom: 80px;
+    margin-bottom: 56px;
+    margin-left: 14px;
+}
+
+#favorites p span {
+    position: relative;
+    bottom: -134px;
+    left: -70px;
+}
+
+#favorites a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 17px;
+    color: lightgray;
+}
+
+.details {
+    width: 40%;
+    padding-left: 250px;
+}
+
+.details h3 {
+    text-align: center;
+    color: lightblue;
+}
+
+.details h3 a {
+    font-size: 30px;
+    text-decoration: none;
+    color: lightblue;
+    display: block;
+}
+
+.details h3 span {
+    display: block;
+    text-align: left;
+    color: lightgray;
+    font-size: 16px;
+}
+
+.details p a {
+    color: gray;
+}
+
+#articles {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: -650px;
+}
+
+#articles h4 {
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    margin-right: 50px;
+    border-top: 1px solid gray;
+}
+
+#blogs {
+    width: 950px;
+}
+
+#blogs li {
+    list-style-type: none;
+}
+
+#blogs ul .author {
+    display: block;
+    text-align: left;
+}
+
+#blogs h4 {
+    color: pink;
+    border-top: 2px solid pink;
+    margin-right: 80px;
+}
+
+#blogs a {
+    color: pink;
+    text-decoration: none;
+}
+
+#blogs ul li:first-child img {
+    float: left;
+    margin-right: 8px;
+}
+
+#blogs ul li:last-child img {
+    float: left;
+    margin-right: 8px;
+}
+
+#news {
+    width: 800px;
+    height: 1px;
+}
+
+#news h4 {
+    color: purple;
+    border-top: 2px solid purple;
+}
+
+#news ul li {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#news ul li a {
+    text-decoration: none;
+    color: purple;
+    text-transform: uppercase;
+    display: block;
+}
+
+#news ul li p a {
+    color: gray;
+    text-transform: lowercase;
+    display: inline;
+}
+
+.day {
+    font-weight: bold;
+}
+
+#updates {
+    margin-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+}
+
+#updates h4 {
+    color: yellow;
+    border-top: 2px solid yellow;
+}
+
+#updates p {
+    width: 250px;
+}
+
+#updates .navigation li {
+    list-style-type: none;
+}
+
+#updates .navigation {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-top: 80px;
+    margin-right: 20px;
+    width: 250px;
+}
+
+#updates .navigation a {
+    text-decoration: none;
+    color: gray;
+}
+
+#updates .navigation .selected a {
+    color: yellow;
+}
+
+form * {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+form .button {
+    display: block;
+    align-items: right;
+    position: relative;
+    right: -190px;
+    width: 20%;
+    background-color: yellow;
+}
+
+#news ul {
+    padding: auto;
+    margin: auto;
+}
