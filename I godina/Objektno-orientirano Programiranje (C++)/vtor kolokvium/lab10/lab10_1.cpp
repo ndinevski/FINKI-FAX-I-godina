@@ -1,6 +1,8 @@
-//prezemena od filip mazev
 #include <iostream>
-#include <math.h>
+
+#include <cmath>
+
+#include <cstdlib>
 
 using namespace std;
 
@@ -30,50 +32,50 @@ template < typename TYPE >
       Array() {};
 
     Array(int num) {
-      this -> num = num;
-      this -> arr = new TYPE[num];
+      this - > num = num;
+      this - > arr = new TYPE[num];
     }
 
     Array(TYPE * arr, int num) {
-      this -> num = num;
-      this -> arr = new TYPE[num];
+      this - > num = num;
+      this - > arr = new TYPE[num];
       for (int i = 0; i < num; i++) {
-        this -> arr[i] = arr[i];
+        this - > arr[i] = arr[i];
       }
     }
 
     Array(const Array & a) {
-      delete[] this -> arr;
-      this -> arr = new TYPE[a.num];
+      delete[] this - > arr;
+      this - > arr = new TYPE[a.num];
       for (int i = 0; i < a.num; i++) {
-        this -> arr[i] = a.arr[i];
+        this - > arr[i] = a.arr[i];
       }
-      this -> num = a.num;
+      this - > num = a.num;
     }
 
     Array & operator = (const Array & a) noexcept {
-        delete[] this -> arr;
-        this -> arr = new TYPE[a.num];
+        delete[] this - > arr;
+        this - > arr = new TYPE[a.num];
         for (int i = 0; i < a.num; i++) {
-          this -> arr[i] = a.arr[i];
+          this - > arr[i] = a.arr[i];
         }
-        this -> num = a.num;
+        this - > num = a.num;
         return *this;
       }
 
       ~Array() {
-        if (this -> arr != nullptr) {
-          delete[] this -> arr;
-          this -> arr = nullptr;
+        if (this - > arr != nullptr) {
+          delete[] this - > arr;
+          this - > arr = nullptr;
         }
       }
 
     void Erase() {
-      if (this -> arr != nullptr) {
-        delete[] this -> arr;
-        this -> arr = nullptr;
-        this -> num = 0;
-        this -> arr = new TYPE[this -> num];
+      if (this - > arr != nullptr) {
+        delete[] this - > arr;
+        this - > arr = nullptr;
+        this - > num = 0;
+        this - > arr = new TYPE[this - > num];
       }
     }
 
@@ -82,16 +84,16 @@ template < typename TYPE >
         if (index > num || index < 0) {
           throw (ERROR::OUT_OF_BOUNDS);
         } else {
-          return this -> arr[index];
+          return this - > arr[index];
         }
       } catch (ERROR CODE) {
         if (CODE == ERROR::OUT_OF_BOUNDS) {
           out_of_bounds error;
           error.print();
-          return this -> arr[0];
+          return this - > arr[0];
         }
       }
-      return this -> arr[index];
+      return this - > arr[index];
     }
 
     friend std::istream & operator >> (std::istream & in ,
@@ -136,9 +138,10 @@ template < typename TYPE >
     }
 
     int getLenght() {
-      return this -> num;
+      return this - > num;
     }
   };
+
 
 template < class TYPE > TYPE sum(Array < TYPE > arr) {
   TYPE elem_sum = TYPE();
@@ -179,25 +182,43 @@ template < typename TYPE > bool equal(Array < TYPE > & cmp_1, Array < double > &
   return true;
 }
 
+
+
 int main() {
+
   int n;
-  double adder;
-  cin >> adder >> n;
-  Array < int > arr(n);
-  Array < double > sum_arr(n);
-  Array < int > arr_2(n);
-  for (int i = 0; i < n; i++) {
-    cin >> arr[i];
-    sum_arr[i] = arr[i] + adder;
+  double r;
+
+  cin >> r;
+  cin >> n;
+
+  Array < int > anArray(n);
+  Array < double > adArray(n);
+  Array < int > intArray2(n);
+
+  for (int nCount = 0; nCount < n; nCount++) {
+
+    cin >> anArray[nCount];
+    adArray[nCount] = anArray[nCount] + r;
   }
 
-  sort(arr);
-  arr_2 = arr;
+  BubbleSort(anArray);
 
-  cout << "The arrays: " << endl << arr << "and " << endl << arr_2;
-  cout << ((equal(arr, arr_2)) ? " ARE" : " ARE NOT") << " same!" << endl;
-  cout << "The Average of the array adArray is: " << avg(sum_arr) << endl;
-  cout << "The arrays: " << endl << arr << "and " << endl << sum_arr << ((equal(arr, sum_arr)) ? " ARE" : " ARE NOT") << " same!";
+  intArray2 = anArray;
+
+  cout << "The arrays: " << endl;
+  cout << anArray;
+  cout << "and " << endl;
+  cout << intArray2;
+  cout << ((Equal(anArray, intArray2)) ? " ARE" : " ARE NOT") << " same!" << endl;
+  cout << "The Average of the array adArray is: " << Average(adArray) << endl;
+
+  cout << "The arrays: " << endl;
+  cout << anArray;
+  cout << "and " << endl;
+  cout << adArray;
+  cout << ((Equal(anArray, adArray)) ? " ARE" : " ARE NOT") << " same!";
+
 
   return 0;
 }
